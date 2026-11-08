@@ -13,16 +13,17 @@
             --neon-pink: #ff007f;
             --dark-bg: #0a0a12;
             --text-color: #e0e0ff;
+            --panel-bg: rgba(15, 15, 25, 0.85);
         }
 
-        /* Базовые стили и фоновая неоновая текстура/сетка */
+        /* Базовые стили и фоновая неоновая сетка */
         body {
             margin: 0;
-            padding: 0;
+            padding: 40px 20px;
             background-color: var(--dark-bg);
             background-image: 
-                linear-gradient(rgba(18, 18, 32, 0.7) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(18, 18, 32, 0.7) 1px, transparent 1px);
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
             background-size: 30px 30px;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: var(--text-color);
@@ -30,29 +31,25 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Неоновая обертка для контента */
-        .neon-container {
-            max-width: 600px;
-            width: 90%;
-            margin: 20px;
-            padding: 40px;
-            background: rgba(15, 15, 25, 0.85);
+        /* Главный контейнер */
+        .neon-wrapper {
+            max-width: 750px;
+            width: 100%;
+            background: var(--panel-bg);
             border: 2px solid var(--neon-cyan);
             border-radius: 16px;
             box-shadow: 
-                0 0 10px rgba(0, 243, 255, 0.2),
-                0 0 20px rgba(0, 243, 255, 0.2),
+                0 0 15px rgba(0, 243, 255, 0.2),
                 inset 0 0 15px rgba(0, 243, 255, 0.1);
-            text-align: center;
-            backdrop-filter: blur(8px);
+            padding: 40px;
+            backdrop-filter: blur(10px);
             position: relative;
         }
 
-        /* Светящаяся декоративная линия сверху */
-        .neon-container::before {
+        /* Верхняя розовая светящаяся полоса */
+        .neon-wrapper::before {
             content: '';
             position: absolute;
             top: -2px;
@@ -66,83 +63,173 @@
         /* Главный заголовок с анимацией пульсации */
         h1 {
             font-size: 2.5rem;
+            text-align: center;
             color: #fff;
-            text-shadow: 
-                0 0 7px #fff,
-                0 0 10px #fff,
-                0 0 21px var(--neon-cyan),
-                0 0 42px var(--neon-cyan),
-                0 0 82px var(--neon-cyan);
-            animation: pulsate 2s infinite alternate;
-            margin-bottom: 30px;
-            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 10px;
             letter-spacing: 1px;
+            animation: neon-glow 2s infinite alternate;
         }
 
-        /* Анимация неонового мерцания/пульсации */
-        @keyframes pulsate {
-            0%, 100% {
-                text-shadow: 
-                    0 0 4px #fff,
-                    0 0 11px var(--neon-cyan),
-                    0 0 19px var(--neon-cyan),
-                    0 0 40px var(--neon-cyan);
+        @keyframes neon-glow {
+            0% {
+                text-shadow: 0 0 5px #fff, 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
             }
-            50% {
-                text-shadow: 
-                    0 0 4px #fff,
-                    0 0 15px var(--neon-cyan),
-                    0 0 30px var(--neon-cyan),
-                    0 0 60px var(--neon-cyan),
-                    0 0 80px var(--neon-cyan);
+            100% {
+                text-shadow: 0 0 7px #fff, 0 0 15px var(--neon-cyan), 0 0 35px var(--neon-cyan), 0 0 50px var(--neon-cyan);
             }
         }
 
-        /* Кнопка телефона / Контакты */
-        .neon-phone {
+        .tagline {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #a0a0c0;
+            margin-bottom: 30px;
+        }
+
+        /* Кнопки контактов */
+        .contacts-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.5rem;
+            width: 80%;
+            max-width: 320px;
+            text-align: center;
+            padding: 14px 20px;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #fff;
             text-decoration: none;
-            border: 2px solid var(--neon-pink);
             border-radius: 50px;
-            box-shadow: 
-                0 0 5px var(--neon-pink),
-                inset 0 0 5px var(--neon-pink);
             transition: all 0.3s ease;
             background: transparent;
         }
 
-        .neon-phone:hover {
-            background: var(--neon-pink);
-            color: #121212;
-            box-shadow: 
-                0 0 20px var(--neon-pink),
-                0 0 40px var(--neon-pink);
-            text-shadow: none;
+        .btn-phone {
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 8px var(--neon-pink), inset 0 0 5px var(--neon-pink);
         }
 
-        /* Дополнительный текст */
-        .sub-text {
-            font-size: 1.2rem;
+        .btn-phone:hover {
+            background: var(--neon-pink);
+            color: #000;
+            box-shadow: 0 0 25px var(--neon-pink);
+        }
+
+        .btn-tg {
+            border: 2px solid #0088cc;
+            box-shadow: 0 0 8px rgba(0, 136, 204, 0.5);
+            font-size: 1.1rem;
+        }
+
+        .btn-tg:hover {
+            background: #0088cc;
+            box-shadow: 0 0 25px #0088cc;
+        }
+
+        /* Стилизация текстовых блоков */
+        .content-section {
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+
+        p {
+            font-size: 1.05rem;
             line-height: 1.6;
-            color: #a0a0c0;
-            margin-top: 15px;
+            color: #c8c8e6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Список внизу */
+        .features-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .features-list li {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #fff;
+            list-style-type: none;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: "⚡";
+            position: absolute;
+            left: -25px;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 30px;
+            text-shadow: 0 0 8px var(--neon-cyan);
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 15px 10px; }
+            .neon-wrapper { padding: 20px; }
+            h1 { font-size: 1.9rem; }
+            .btn { width: 100%; font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Новая стильная обертка -->
-    <div class="neon-container">
+    <div class="neon-wrapper">
         <h1>Электрик Колпино</h1>
-        <p class="sub-text">Вызов электрика в Колпино. Вызов электрика на дом.</p>
-        
-        <!-- Интерактивная кнопка для звонка по клику -->
-        <a href="tel:+79500308830" class="neon-phone">8 950 030 88 30</a>
+        <div class="tagline">Вызов электрика на дом в г. Колпино</div>
+
+        <!-- Блок контактов -->
+        <div class="contacts-block">
+            <a href="tel:+79500308830" class="btn btn-phone">📞 8 950 030 88 30</a>
+            <a href="https://t.me" target="_blank" class="btn btn-tg">✈️ Телеграм @elektrikkolpino</a>
+        </div>
+
+        <!-- Основной текст -->
+        <div class="content-section">
+            <p>Выполняем электромонтажные работы по дому, выезд электрика на дом, осуществим поиск и устранение неисправностей, заменим неисправные розетки, светильники, выключатели, электропроводку. Прокладка кабеля для дополнительных бытовых розеток, подведение питающих кабелей к стиральным машинам, водонагревателям. Замена автоматических выключателей (автоматов) в щитах. Проверка целостности изоляции, проверка состояния электропроводок. Вызов электрика на дом в Колпино. Если Вам требуется электрик, услуги электрика, не откладывайте его визит, все проблемы будут решены в самые короткие сроки.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Электромонтажные работы. Прокладка кабеля</h2>
+            <p>Электрик осуществим электромонтажные работы, связанные с запитыванием бытовых приборов. Прокладка кабеля в кабель-канале, установка дополнительных розеток, автоматов, выключателей для осветительных приборов. Электромонтажные работы выполняются качественно и быстро, по приемлемым ценам. Выполнение электромонтажных работ в день обращения. Решаем любые проблемы с электропроводкой. Вы будете довольны качеством выполненных электромонтажных работ.</p>
+        </div>
+
+        <div class="content-section">
+            <ul class="features-list">
+                <li>Вызов электрика на дом в г. Колпино</li>
+                <li>Замена и установка розеток, светильников, выключателей</li>
+                <li>Замена проводки</li>
+            </ul>
+            
+            <p>Вызвать электрика на дом можно в любой район Колпино. Вызов электрика можно осуществить в любой день. Замена розеток, замена светильников, установка автоматов. Подведение электрокабелей, решение других проблем с электропроводкой. Замена светильников осуществляется в вашем присутствии. Замена розеток на современные, а также монтаж наружных розеток в стену.</p>
+            
+            <p>Проконсультируем в любых вопросах связанных с заменой розеток, выключателей, светильников, по вопросам электромонтажных работ. Выбор оборудования, моделей тех или иных элементов, подбор сечения провода, выбор автоматов, УЗО - все эти вопросы будут решены за Вас. Вам останется только наслаждаться качеством проделанных электромонтажных работ.</p>
+        </div>
+
+        <div class="footer-note">
+            Вызов электрика в любую точку Колпино, в удобное для Вас время.
+        </div>
     </div>
 
 </body>
