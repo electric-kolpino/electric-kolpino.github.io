@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ремонт электропроводки в Колпино — Электрик Колпино 8 950 030 88 30</title>
+<meta name="description" content="Ремонт электропроводки в Колпино: поиск и устранение неисправностей — обрыв, плохой контакт, короткое замыкание. Капитальный и частичный ремонт, замена проводки. Тел. 8 950 030 88 30">
+<meta name="keywords" content="ремонт электропроводки колпино, замена проводки колпино, обрыв провода, короткое замыкание, электрик колпино">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+:root{
+  --bg:#070310;
+  --panel:#0e0820;
+  --neon:#a855f7;      /* электрический фиолетовый */
+  --neon2:#2dd4bf;     /* бирюзовый акцент */
+  --deep:#3b1d7a;      /* глубокий фиолетово-синий */
+  --text:#ece7ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 0%,rgba(59,29,122,.45),transparent 60%),
+    radial-gradient(ellipse 50% 35% at 85% 10%,rgba(45,212,191,.12),transparent 60%),
+    repeating-linear-gradient(45deg,rgba(168,85,247,.045) 0 2px,transparent 2px 26px),
+    var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6;
+  min-height:100vh;
+}
+a{color:var(--neon2);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- Общие вспышки молний ---------- */
+.flash{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(circle at 30% 15%,rgba(168,85,247,.16),transparent 30%),
+    radial-gradient(circle at 75% 5%,rgba(45,212,191,.10),transparent 28%);
+  opacity:0;
+  animation:skyflash 7s infinite;
+}
+@keyframes skyflash{
+  0%,86%{opacity:0}
+  87%{opacity:.9}
+  89%{opacity:.15}
+  91%{opacity:.7}
+  94%,100%{opacity:0}
+}
+
+/* ---------- Шапка с молниями ---------- */
+header{
+  position:relative;
+  padding:48px 20px 40px;
+  text-align:center;
+  overflow:hidden;
+  background:radial-gradient(ellipse at top,#2a1050 0%,var(--bg) 72%);
+}
+header h1{
+  font-size:clamp(1.5rem,4vw,2.6rem);
+  color:#fff;
+  text-shadow:0 0 8px var(--neon),0 0 24px var(--neon),0 0 48px rgba(168,85,247,.55);
+}
+header h2{
+  margin-top:14px;
+  font-size:clamp(1rem,2.6vw,1.5rem);
+  color:var(--neon2);
+  text-shadow:0 0 8px var(--neon2),0 0 24px rgba(45,212,191,.6);
+}
+.phone-big{
+  display:inline-block;
+  margin-top:18px;
+  font-size:clamp(1.3rem,3.5vw,2.2rem);
+  font-weight:bold;
+  color:#fff;
+  border:2px solid var(--neon);
+  border-radius:14px;
+  padding:12px 30px;
+  text-shadow:0 0 10px var(--neon);
+  box-shadow:0 0 14px rgba(168,85,247,.6),inset 0 0 14px rgba(168,85,247,.25);
+  transition:.25s;
+  animation:pulse 2.4s infinite;
+}
+.phone-big:hover{
+  text-shadow:0 0 18px var(--neon2);
+  box-shadow:0 0 26px rgba(45,212,191,.75),inset 0 0 18px rgba(45,212,191,.3);
+  text-decoration:none;
+  animation-play-state:paused;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 12px rgba(168,85,247,.45),inset 0 0 12px rgba(168,85,247,.2)}
+  50%{box-shadow:0 0 26px rgba(168,85,247,.85),inset 0 0 20px rgba(168,85,247,.35)}
+}
+
+/* Молнии по краям шапки */
+.bolt{
+  position:absolute;
+  top:0;
+  height:100%;
+  width:120px;
+  pointer-events:none;
+  opacity:.35;
+  background:
+    linear-gradient(115deg,transparent 46%,var(--neon) 47%,var(--neon) 49%,transparent 50%),
+    linear-gradient(65deg,transparent 40%,var(--neon) 41%,var(--neon) 43%,transparent 44%),
+    linear-gradient(100deg,transparent 60%,var(--neon) 61%,var(--neon) 62%,transparent 63%),
+    linear-gradient(75deg,transparent 55%,var(--neon) 56%,var(--neon) 59%,transparent 60%);
+  filter:drop-shadow(0 0 6px var(--neon));
+  animation:flicker 3s infinite;
+}
+.bolt.left{left:2%}
+.bolt.right{right:2%;transform:scaleX(-1)}
+
+/* Большая молния в центре */
+.bolt-center{
+  position:absolute;
+  left:50%;
+  top:6%;
+  transform:translateX(-50%);
+  width:70px;
+  height:150px;
+  background:linear-gradient(180deg,#f3e8ff,#c084fc 40%,#7c3aed);
+  clip-path:polygon(42% 0%,72% 0%,52% 38%,68% 38%,28% 100%,44% 55%,24% 55%);
+  filter:drop-shadow(0 0 14px var(--neon)) drop-shadow(0 0 34px rgba(168,85,247,.7));
+  opacity:.85;
+  animation:bigbolt 4.5s infinite;
+  pointer-events:none;
+}
+@keyframes bigbolt{
+  0%,70%{opacity:.15;filter:drop-shadow(0 0 4px var(--neon))}
+  72%{opacity:1;filter:drop-shadow(0 0 18px var(--neon)) drop-shadow(0 0 40px rgba(168,85,247,.9))}
+  74%{opacity:.35}
+  76%{opacity:.95}
+  84%,100%{opacity:.15}
+}
+@keyframes flicker{
+  0%,100%{opacity:.35}
+  50%{opacity:.6}
+  52%{opacity:.2}
+  54%{opacity:.55}
+}
+
+/* ---------- Меню ---------- */
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(7,3,16,.95);
+  border-top:1px solid var(--neon);
+  border-bottom:1px solid var(--neon);
+  box-shadow:0 0 12px rgba(168,85,247,.4);
+}
+nav ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+nav a{
+  display:block;
+  padding:12px 18px;
+  color:var(--text);
+  font-size:1.05rem;
+  transition:.2s;
+}
+nav a:hover,nav a.active{
+  color:var(--neon2);
+  text-shadow:0 0 10px var(--neon2);
+  text-decoration:none;
+}
+
+/* ---------- Контент ---------- */
+main{max-width:1100px;margin:0 auto;padding:28px 20px;position:relative;z-index:1}
+section.card{
+  background:linear-gradient(160deg,var(--panel),#0a0618);
+  border:1px solid rgba(168,85,247,.4);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:26px;
+  box-shadow:0 0 18px rgba(168,85,247,.18),inset 0 1px 0 rgba(192,132,252,.25);
+  transition:.3s;
+}
+section.card:hover{
+  box-shadow:0 0 30px rgba(168,85,247,.35),inset 0 1px 0 rgba(192,132,252,.4);
+}
+section.card h3{
+  color:var(--neon2);
+  text-shadow:0 0 8px rgba(45,212,191,.5);
+  margin-bottom:14px;
+  font-size:1.35rem;
+}
+section.card p{margin-bottom:12px}
+section.card b{color:#fff;text-shadow:0 0 8px var(--neon)}
+
+/* Список неисправностей */
+ul.works{list-style:none}
+ul.works li{padding:9px 0;border-bottom:1px solid rgba(168,85,247,.18)}
+ul.works li:last-child{border-bottom:none}
+ul.works li::before{content:"⚡ ";color:var(--neon)}
+
+/* Плашка-акцент */
+.highlight{
+  border-left:4px solid var(--neon2);
+  background:rgba(45,212,191,.07);
+  border-radius:0 10px 10px 0;
+  padding:12px 16px;
+  margin:14px 0;
+}
+
+/* Боковая колонка */
+.layout{display:grid;grid-template-columns:2fr 1fr;gap:26px}
+aside .card h3{font-size:1.1rem}
+.contact-line{font-size:1.15rem;margin:10px 0}
+.contact-line b{color:#fff;text-shadow:0 0 8px var(--neon)}
+aside .card ul{list-style:none}
+aside .card li{padding:5px 0;border-bottom:1px solid rgba(168,85,247,.15)}
+aside .card li:last-child{border-bottom:none}
+
+/* ---------- Подвал ---------- */
+footer{
+  position:relative;
+  z-index:1;
+  border-top:1px solid var(--neon);
+  box-shadow:0 -4px 18px rgba(168,85,247,.25);
+  padding:26px 20px 34px;
+  text-align:center;
+  font-size:.85rem;
+}
+footer .links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:6px 16px;
+  margin-bottom:14px;
+}
+footer .links a{color:var(--text)}
+footer .links a:hover{color:var(--neon2)}
+.copy{margin-top:10px;color:#9d8cc4}
+
+/* ---------- Адаптивность ---------- */
+@media (max-width:820px){
+  .layout{grid-template-columns:1fr}
+  .bolt{width:60px}
+  .bolt-center{width:46px;height:100px}
+}
+@media (max-width:520px){
+  nav a{padding:10px 12px;font-size:.95rem}
+  section.card{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="flash"></div>
+
+<header>
+  <div class="bolt left"></div>
+  <div class="bolt right"></div>
+  <div class="bolt-center"></div>
+  <h1>Ремонт электропроводки</h1>
+  <h2>Вызов электрика в Колпино. Телефон для связи</h2>
+  <a class="phone-big" href="tel:+79500308830">8 950 030 88 30</a>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="uslugi.html">Услуги</a></li>
+    <li><a href="price.html">Цены</a></li>
+    <li><a href="contakt.html">Контакты</a></li>
+    <li><a href="news.html">Новости</a></li>
+    <li><a href="info.html">Информация</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="layout">
+
+    <div>
+      <section class="card">
+        <h3>Ремонт электропроводки в Колпино — 8 950 030 88 30</h3>
+        <p>Произведём качественно и быстро ремонт электропроводки. Ремонт электропроводки может быть капитальным и частичным. Частичный ремонт электропроводки включает в себя поиск неисправности и её устранение. После того как причина выявлена, принимается решение относительно вида ремонта.</p>
+        <p>К неисправностям электропроводки могут быть причислены такие, как:</p>
+        <ul class="works">
+          <li>Обрыв провода</li>
+          <li>Плохой контакт</li>
+          <li>Короткое замыкание</li>
+        </ul>
+        <p>Встречаются неисправности электропроводки, при которых ремонт электропроводки возможен только капитальный — например, обрыв провода в стене путём его перегорания, частичного либо полного. При более сложных неисправностях возможна только замена проводки.</p>
+      </section>
+
+      <section class="card">
+        <h3>Замена проводки</h3>
+        <p>Замена проводки требует подготовки и обсчёта количества материалов, поэтому замена всей проводки не может быть выполнена в день обращения.</p>
+        <div class="highlight">
+          Звоните по телефону <a href="tel:+79500308830"><b>8 950 030 88 30</b></a> или пишите в <a href="https://t.me/elektrikkolpino">Телеграм @elektrikkolpino</a> — приедем, найдём причину неисправности и предложим оптимальный вариант ремонта или замены проводки.
+        </div>
+      </section>
+    </div>
+
+    <aside>
+      <section class="card">
+        <h3>Вызов электрика в Колпино по телефону</h3>
+        <p class="contact-line"><a href="tel:+79500308830"><b>8 950 030 88 30</b></a></p>
+        <p class="contact-line"><a href="https://t.me/elektrikkolpino">Телеграм @elektrikkolpino</a></p>
+        <p class="contact-line"><a href="https://wa.me/79500308830/?text=Здравствуйте, можно вызвать электрика?">WhatsApp +7 950 030 88 30</a></p>
+      </section>
+
+      <section class="card">
+        <h3>Популярные запросы</h3>
+        <ul>
+          <li>Ремонт электропроводки Колпино</li>
+          <li>Замена проводки в Колпино</li>
+          <li>Устранение короткого замыкания</li>
+          <li>Срочно вызвать электрика в Колпино</li>
+          <li>Частный электрик в Колпино</li>
+          <li>Электрики Колпино</li>
+          <li>Услуги электриков в Колпино</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>Погас свет? Искрит розетка?</h3>
+        <p>У Вас погас свет? Искрит в розетке, и Вы не знаете, что делать? Достаточно позвонить по телефону <b>8 950 030 88 30</b> — и электрик приедет на дом в Колпино.</p>
+      </section>
+    </aside>
+
+  </div>
+</main>
+
+<footer>
+  <div class="links">
+    <a href="uslugi.html">Услуги</a>
+    <a href="el.html">Электротехнические работы по дому</a>
+    <a href="roz.html">Замена розеток, светильников, выключателей</a>
+    <a href="rem.html">Ремонт электропроводки</a>
+    <a href="svet.html">Установка розеток, светильников</a>
+    <a href="kab.html">Прокладка кабеля</a>
+    <a href="dop.html">Работы по дому</a>
+    <a href="neisp.html">Устранение неисправностей</a>
+    <a href="v.html">Вызов электрика на дом в Колпино</a>
+    <a href="cons.html">Консультации</a>
+    <a href="mash.html">Подключение стиральных машин</a>
+    <a href="plita.html">Ремонт электроплит</a>
+    <a href="contakt.html">Контакты</a>
+    <a href="price.html">Цены</a>
+    <a href="schetchiki.html">Замена счетчиков электроэнергии</a>
+    <a href="avarija.html">Восстановление электроснабжения после аварий</a>
+    <a href="kz.html">Устранение коротких замыканий</a>
+    <a href="avtomat.html">Замена автоматов (УЗО), переборка щитов</a>
+    <a href="oborudovanije.html">Установка электрооборудования</a>
+  </div>
+  <div>
+    <a href="tel:+79500308830">Позвонить: 8 950 030 88 30</a> — Электрик Колпино<br>
+    Услуги электрика в Колпино, телефон: 8 950 030 88 30<br>
+    <a href="https://t.me/elektrikkolpino">Телеграм @elektrikkolpino</a> ·
+    <a href="https://wa.me/79500308830/?text=Здравствуйте, можно вызвать электрика?">WhatsApp +7 950 030 88 30</a>
+  </div>
+  <p class="copy">Электрик-Колпино ©</p>
+</footer>
+
+</body>
+</html>
